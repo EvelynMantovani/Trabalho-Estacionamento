@@ -1,0 +1,77 @@
+
+Create database estacionamento;
+Use estacionamento;
+
+CREATE TABLE Clientes(
+  CPF varchar(11) NOT NULL PRIMARY KEY,
+  Nome VARCHAR(60) NOT NULL,
+  Data_Nas DATE
+  );
+
+CREATE TABLE Modelo(
+  Cod_Mod INT NOT NULL PRIMARY KEY,
+  Desc_2 VARCHAR (40)
+);
+
+CREATE TABLE Veiculo(
+  Placa VARCHAR(8) NOT NULL PRIMARY KEY,
+  Cliente_CPF varchar(11),
+  Modelo_CodMod INT,
+  Cor VARCHAR(20),
+
+  FOREIGN KEY (Cliente_CPF) REFERENCES Clientes(CPF),
+  FOREIGN KEY (Modelo_CodMod) REFERENCES Modelo(Cod_Mod)
+);
+
+CREATE TABLE Patio(
+  Numero INT NOT NULL PRIMARY KEY,
+  Endereco VARCHAR(40),
+  Capacidade INT
+);
+
+CREATE TABLE Estaciona(
+  Patio_num INT,
+  Veiculo_Placa VARCHAR (8),
+  dtEntrada VARCHAR(10),
+  dtSaida VARCHAR(10),
+  hsEntrada VARCHAR (10),
+  hsSaida VARCHAR (10),
+
+  FOREIGN KEY (Patio_num) REFERENCES Patio(Numero),
+  FOREIGN KEY (Veiculo_Placa) REFERENCES Veiculo(Placa)
+);
+
+
+ drop database estacionamento;
+
+
+INSERT INTO Clientes (CPF, Nome, Data_Nas) VALUES
+('12345678901', 'João Silva', '1985-06-10'),
+('23456789012', 'Maria Oliveira', '1990-02-15'),
+('34567890123', 'Carlos Santos', '1978-11-30');
+
+
+
+INSERT INTO Modelo (Cod_Mod, Desc_2) VALUES
+(1, 'Fiat Uno'),
+(2, 'Honda Civic'),
+(3, 'Chevrolet Onix');
+
+
+
+INSERT INTO Veiculo (Placa, Cliente_CPF, Modelo_CodMod, Cor) VALUES
+('ABC1234', '12345678901', 1, 'Vermelho'),
+('XYZ5678', '23456789012', 2, 'Preto'),
+('LMN9012', '34567890123', 3, 'Branco');
+
+
+
+INSERT INTO Patio (Numero, Endereco, Capacidade) VALUES
+(1, 'Rua das Flores, 100', 50),
+(2, 'Av. Central, 2000', 100);
+
+
+INSERT INTO Estaciona (Patio_num, Veiculo_Placa, dtEntrada, dtSaida, hsEntrada, hsSaida) VALUES
+(1, 'ABC1234', '2025-06-01', '2025-06-01', '08:00', '12:00'),
+(1, 'XYZ5678', '2025-06-01', '2025-06-01', '09:30', '11:00'),
+(2, 'LMN9012', '2025-06-02', '2025-06-02', '10:00', '13:00');
