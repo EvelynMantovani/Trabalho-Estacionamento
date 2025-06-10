@@ -75,3 +75,19 @@ INSERT INTO Estaciona (Patio_num, Veiculo_Placa, dtEntrada, dtSaida, hsEntrada, 
 (1, 'ABC1234', '2025-06-01', '2025-06-01', '08:00', '12:00'),
 (1, 'XYZ5678', '2025-06-01', '2025-06-01', '09:30', '11:00'),
 (2, 'LMN9012', '2025-06-02', '2025-06-02', '10:00', '13:00');
+
+
+
+ select veiculo.placa, clientes.nome from veiculo JOIN clientes ON veiculo.Cliente_CPF = clientes.CPF;
+
+select clientes.cpf, clientes.nome, veiculo.placa FROM clientes JOIN veiculo ON clientes.cpf = veiculo.Cliente_CPF;
+
+B - select clientes.cpf, clientes.nome, veiculo.placa FROM clientes JOIN veiculo ON clientes.cpf = veiculo.Cliente_CPF WHERE veiculo.placa = "ABC1234";
+
+select * from veiculo JOIN clientes ON veiculo.Cliente_CPF = clientes.CPF;
+
+select clientes.cpf, clientes.nome, veiculo.placa FROM clientes JOIN veiculo ON clientes.cpf = veiculo.Cliente_CPF WHERE veiculo.placa like "%1%";
+// DEVOLVE APENAS PLACAS COM O NÚMERO 1.
+
+select clientes.cpf, clientes.nome, veiculo.placa FROM clientes JOIN veiculo ON clientes.cpf = veiculo.Cliente_CPF WHERE veiculo.placa like '%N%';
+// ASPAS SIMPLES E DUPLA NÃO MUDA NADA
